@@ -1,0 +1,160 @@
+<style>
+  .selection {
+    cursor: move;
+    outline: 2px solid var(--primary);
+  }
+  .selection-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    outline: 2px solid var(--primary);
+    background-color: var(--background);
+  }
+  .selection-side-y {
+    width: 100%;
+    height: 10px;
+    cursor: ns-resize;
+  }
+  .selection-side-x {
+    height: 100%;
+    width: 10px;
+    cursor: ew-resize;
+  }
+</style>
+
+<div id="View" class="bg-subtle-light d-flex fd-column">
+  <div
+    id="toolbar"
+    class="bg-default p-2 bc-default bw-1 mx-auto my-4 br-2 p-fixed z-1 w-fit-content"
+    style="top: 0; right: 0; left: 0"
+  >
+    <button
+      type="button"
+      class="btn-plain fs-3 br-2"
+      title="Move"
+      data-tool="move"
+    >
+      <i class="icon icon-move"></i>
+    </button>
+    <button
+      type="button"
+      class="btn-plain fs-3 br-2"
+      title="Signature"
+      data-tool="signature"
+    >
+      <i class="icon icon-signature"></i>
+    </button>
+    <button
+      type="button"
+      class="btn-plain fs-3 br-2"
+      title="Text"
+      data-tool="text"
+    >
+      <i class="icon icon-text"></i>
+    </button>
+    <button
+      type="button"
+      class="btn-plain fs-3 br-2"
+      title="Checkbox"
+      data-tool="checkbox"
+    >
+      <i class="icon icon-checkbox"></i>
+    </button>
+    <div class="ml-2 bc-default blw-1 pl-2 d-inline-block">
+      <button id="zoomOutBtn" type="button" class="btn-plain fs-3 br-2">
+        <i class="icon icon-zoom-out"></i>
+      </button>
+      <button id="zoomInBtn" type="button" class="btn-plain fs-3 br-2">
+        <i class="icon icon-zoom-in"></i>
+      </button>
+    </div>
+  </div>
+  <div
+    id="selToolbar"
+    class="bg-default p-2 bc-default bw-1 mx-auto my-4 br-2 p-fixed z-1 w-fit-content d-none"
+    style="top: 0; right: 0; left: 0"
+  >
+    <button
+      id="closeToolbarBtn"
+      type="button"
+      class="btn-plain fs-3 br-2"
+      title="Close"
+    >
+      <i class="icon icon-close"></i>
+    </button>
+    <div class="ml-2 bc-default blw-1 pl-2 d-inline-block">
+      <button
+        id="editToolbarBtn"
+        type="button"
+        class="btn-plain fs-3 br-2"
+        title="Edit value"
+      >
+        <i class="icon icon-edit"></i>
+      </button>
+      <button
+        id="clearToolbarBtn"
+        type="button"
+        class="btn-plain fs-3 br-2"
+        title="Clear value"
+      >
+        <i class="icon icon-clear"></i>
+      </button>
+    </div>
+    <div class="ml-2 bc-default blw-1 pl-2 d-inline-block">
+      <button
+        id="removeToolbarBtn"
+        type="button"
+        class="btn-plain fs-3 br-2 btn-danger"
+        title="Remove"
+      >
+        <i class="icon icon-trash"></i>
+      </button>
+    </div>
+  </div>
+  <div
+    id="backdrop"
+    class="bg-color p-fixed w-100 h-100 z-1 d-none"
+    style="top: 0; left: 0; opacity: 0.3"
+  ></div>
+  <div id="viewer" class="f-auto min-h-0"></div>
+</div>
+
+<div id="Selection" class="selection p-absolute us-none">
+  <div
+    class="p-absolute selection-side-y us-none"
+    style="transform: translateY(-50%)"
+  ></div>
+  <div
+    class="p-absolute selection-side-x us-none"
+    style="right: 0; transform: translateX(50%)"
+  ></div>
+  <div
+    class="p-absolute selection-side-y us-none"
+    style="bottom: 0; transform: translateY(50%)"
+  ></div>
+  <div
+    class="p-absolute selection-side-x us-none"
+    style="transform: translateX(-50%)"
+  ></div>
+  <div
+    class="selection-corner us-none"
+    style="cursor: nwse-resize; transform: translate(-50%, -50%)"
+  ></div>
+  <div
+    class="selection-corner us-none"
+    style="cursor: nesw-resize; right: 0; transform: translate(50%, -50%)"
+  ></div>
+  <div
+    class="selection-corner us-none"
+    style="
+      cursor: nwse-resize;
+      right: 0;
+      bottom: 0;
+      transform: translate(50%, 50%);
+    "
+  ></div>
+  <div
+    class="selection-corner us-none"
+    style="cursor: nesw-resize; bottom: 0; transform: translate(-50%, 50%)"
+  ></div>
+</div>

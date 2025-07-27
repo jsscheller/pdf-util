@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsscheller/pdf-util.git"
+  },
+  "bugs": "https://github.com/jsscheller/pdf-util/issues",
+  "forum": "https://github.com/jsscheller/pdf-util/discussions",
+  "devDependencies": {
+    "@jspawn/ghostscript-wasm": "^0.0.2",
+    "comlink": "^4.4.2",
+    "crisp-styles": "^0.1.0",
+    "esbuild": "^0.21.2",
+    "html-bindgen": "^0.3.0",
+    "mutool-wasm": "^0.1.0",
+    "pdf2docx-wasm": "^0.1.0",
+    "pdfcpu-wasm": "^0.1.0",
+    "pdfjs-dist": "^5.3.31",
+    "qpdf-wasm": "^0.1.0",
+    "runish": "^0.1.0",
+    "serdev": "^0.1.0",
+    "typescript": "^5.3.3",
+    "uvu": "^0.5.6"
+  }
+}

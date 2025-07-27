@@ -1,0 +1,84 @@
+<style>
+  .field {
+    top: 0;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .field > span {
+    white-space: nowrap;
+    transform-origin: left center;
+  }
+  .field > .row {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: var(--svg);
+  }
+</style>
+
+<div id="Field" class="field c-pointer p-absolute o-hidden us-none">
+  <div
+    id="color"
+    class="p-absolute w-100 h-100 z-n1"
+    style="opacity: 0.7"
+  ></div>
+  <div id="labelContainer" class="row jc-center ai-center g-3 px-3 h-100">
+    <div class="col-auto lh-0">
+      <i id="icon" class="icon fs-6 sm_fs-1"></i>
+    </div>
+    <div
+      id="label"
+      class="to-ellipsis fs-3 sm_fs-n1 ml-2"
+      style="flex: 0 1 auto"
+    ></div>
+  </div>
+  <div id="valueContainer" class="row ai-center d-none">
+    <div
+      id="value"
+      class="to-ellipsis"
+      style="flex: 0 1 auto; transform-origin: left"
+    ></div>
+  </div>
+</div>
+
+<dialog id="FieldValueEditor" class="bc-default bw-1 maxw-sm mx-auto w-100 mt-6">
+  <div class="bc-default bbw-1 row p-2">
+    <div class="col-auto">
+      <button id="close" type="button" class="btn-plain">Close</button>
+    </div>
+    <div class="col"></div>
+    <div class="col-auto">
+      <button id="clear" type="button" class="btn-plain">Clear</button>
+      <button id="submit" type="button" class="btn-plain fw-bold">Done</button>
+    </div>
+  </div>
+
+  <div class="p-4">
+    <div id="sig">
+      <select id="sigMethodSelect" class="form-select">
+        <option>Draw signature</option>
+        <option>Type signature</option>
+        <option>Upload signature image</option>
+      </select>
+      <div class="mt-4">
+        <div id="sigPad"></div>
+        <input id="sigUploadInput" type="file" class="form-input d-none" />
+      </div>
+    </div>
+
+    <div id="text" class="p-3">
+      <textarea
+        id="textArea"
+        class="form-textarea"
+        rows="3"
+        autofocus
+      ></textarea>
+    </div>
+
+    <div id="date" class="p-3">
+      <input id="dateInput" type="date" class="form-input" />
+    </div>
+  </div>
+</dialog>

@@ -1,0 +1,44 @@
+<style>
+  .signature-pad {
+    cursor: crosshair;
+    position: relative;
+    font-size: 0;
+    background-color: var(--background);
+  }
+  .signature-pad > canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .signature-pad-bg {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    border-bottom: 2px dashed var(--color);
+  }
+  .signature-pad-bg:after {
+    content: "X";
+    position: absolute;
+    font-size: 24px;
+    bottom: 0;
+  }
+  .signature-pad-input {
+    font-family: "HomemadeApple";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    font-size: 36px;
+    background: none;
+    border: none;
+    outline: none;
+    padding-bottom: 6%;
+    text-indent: 28px;
+  }
+</style>
+
+<div id="SignaturePad" class="signature-pad">
+  <div class="signature-pad-bg"></div>
+  <canvas id="canvas"></canvas>
+  <input id="input" type="text" class="signature-pad-input d-none" />
+</div>

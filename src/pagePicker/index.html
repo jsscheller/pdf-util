@@ -1,0 +1,246 @@
+<style>
+  .icon-check {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg>');
+  }
+  .icon-rotate {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path fill="black" d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>');
+  }
+  .icon-rotate-counter {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/><path fill="black" d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/></svg>');
+  }
+  .icon-remove {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/></svg>');
+  }
+  .icon-split {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/></svg>');
+  }
+  .icon-plus {
+    --svg: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M9.75 1H6.25V6.25H1V9.75H6.25V15H9.75V9.75H15V6.25H9.75V1Z"/></svg>');
+  }
+
+  .base {
+    --page-padding: 15px;
+    background-color: var(--subtle-light);
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .split-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .split {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px 0;
+  }
+  .split:last-child {
+    display: none;
+  }
+  .split-line {
+    display: inline-block;
+    border-left: 2px dashed var(--primary);
+    height: 100%;
+    pointer-events: none;
+  }
+  .split-line.active {
+    border-left-style: solid;
+  }
+  .split-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 0;
+    pointer-events: none;
+    color: var(--primary);
+    background-color: var(--background);
+    border-radius: 100%;
+    display: none;
+  }
+  .split:hover > .split-icon {
+    display: block;
+  }
+  .split-icon.active {
+    background-color: var(--primary);
+    outline: 4px solid var(--primary);
+    color: white;
+    display: block;
+  }
+  .page-container,
+  .split-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    align-content: flex-start;
+  }
+  .page {
+    position: relative;
+    background-color: var(--subtle);
+    flex-shrink: 0;
+    padding: var(--page-padding);
+    border-radius: 6px;
+    user-select: none;
+  }
+  .page.selected {
+    outline: 2px solid var(--primary);
+  }
+  .page-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    outline: 3px solid var(--background);
+    box-shadow: 0px 0px 3px 2px var(--color);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    color: white;
+    border-radius: 1px;
+  }
+  .page-checkbox > svg {
+    display: none;
+    pointer-events: none;
+  }
+  .page-checkbox.checked {
+    background-color: var(--primary);
+  }
+  .page-checkbox.checked > svg {
+    display: block;
+  }
+  .page-num {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--subtle);
+    padding: 2px 10px;
+    border-radius: 5px 0 6px 0;
+    pointer-events: none;
+  }
+  .page-preview {
+    position: absolute;
+    width: calc(100% - var(--page-padding) * 2);
+    height: calc(100% - var(--page-padding) * 2);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+  .page-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid var(--border);
+  }
+  .page-toolbar-btn {
+    color: var(--color);
+    background-color: var(--background);
+    outline: none;
+    border: 1px solid var(--border);
+    padding: 12px;
+  }
+  .page-insert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--primary);
+    border: 2px dashed var(--primary);
+    cursor: pointer;
+    position: relative;
+    background-color: var(--subtle);
+    flex-shrink: 0;
+    padding: var(--page-padding);
+    border-radius: 6px;
+    user-select: none;
+  }
+  .page-insert > div > input {
+    width: 0;
+    height: 0;
+    visibility: none;
+    position: absolute;
+  }
+  .move-ghost {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  .move-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    text-align: center;
+  }
+  .move-indicator > div {
+    display: inline-block;
+    background-color: var(--primary);
+    width: 2px;
+    height: 100%;
+  }
+</style>
+
+<div id="PagePicker" class="base">
+  <div id="splitContainer" class="split-container d-none"></div>
+  <div id="pageContainer" class="page-container">
+    <div
+      id="selectAll"
+      class="d-flex fd-column jc-center ai-center c-pointer bw-0 page-insert d-none"
+    >
+      <div id="selectAllCheckbox" class="page-checkbox p-static mb-5">
+        <i class="icon icon-check"></i>
+      </div>
+      <div class="fs-2">Select all</div>
+    </div>
+    <div id="insertDoc" class="page-insert d-none">
+      <div id="insertDocContainer">
+        <input id="insertDocFileInput" type="file" multiple />
+        <i class="icon icon-plus"></i>
+        <div class="fs-2">Add PDF</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Page" class="page">
+  <div id="preview" class="page-preview"></div>
+  <div id="checkbox" class="page-checkbox">
+    <i class="icon icon-check"></i>
+  </div>
+  <div id="pageNum" class="page-num"></div>
+</div>
+
+<div id="PageToolbar" class="page-toolbar br-2 bg-default d-none">
+  <button id="rotate" type="button" class="page-toolbar-btn br-2 btn-plain">
+    <i class="icon icon-rotate"></i>
+  </button>
+  <button
+    id="rotateCounter"
+    type="button"
+    class="page-toolbar-btn br-2 btn-plain"
+  >
+    <i class="icon icon-rotate-counter"></i>
+  </button>
+  <button id="remove" type="button" class="page-toolbar-btn br-2 btn-plain">
+    <i class="icon icon-remove"></i>
+  </button>
+</div>
+
+<div id="Split" class="split">
+  <div id="line" class="split-line"></div>
+  <div id="icon" class="split-icon">
+    <i class="icon icon-split"></i>
+  </div>
+</div>
