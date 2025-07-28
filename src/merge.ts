@@ -19,7 +19,7 @@ export type Chunk = {
  * pdf-util/merge(
  *     chunks = [
  *         Chunk(pdf = @file("baked-alaska.pdf"), page_selection = "3"),
- *         Chunk(pdf = @file("secret-ingredient.pdf"), page_selection = "2,1")
+ *         Chunk(pdf = @file("sample-rental-agreement.pdf"), page_selection = "2,1")
  *     ]
  * )
  * ```
